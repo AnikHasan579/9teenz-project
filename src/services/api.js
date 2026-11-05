@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://nineteenz.onrender.com/api', // 👈 এখানে পরিবর্তন করা হয়েছে
+  // 👇 এখানে আপনার সঠিক Render লিংকটি বসালাম (project শব্দটি সহ)
+  baseURL: 'https://nineteenz-project.onrender.com/api', 
 });
 
 API.interceptors.request.use((config) => {
