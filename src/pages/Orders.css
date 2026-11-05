@@ -1,0 +1,451 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+.orders-luxe {
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0a;
+  color: #f5f5f5;
+  min-height: 100vh;
+  padding-bottom: 100px;
+}
+
+/* ===== HERO ===== */
+.orders-hero {
+  padding: 80px 8% 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.orders-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.orders-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.orders-hero h1 em {
+  font-style: italic;
+  color: #d4af37;
+}
+
+.orders-hero p {
+  color: #666;
+  font-size: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.orders-hero .count {
+  color: #d4af37;
+  font-weight: 700;
+}
+
+/* ===== ERROR ===== */
+.error-luxe {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  padding: 0 8%;
+}
+
+.error-box {
+  background: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: 16px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #ef4444;
+  font-size: 14px;
+}
+
+.error-box .icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+/* ===== LOADING ===== */
+.loading-luxe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 24px;
+}
+
+.spinner-ring {
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(212, 175, 55, 0.08);
+  border-top-color: #d4af37;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-luxe p {
+  color: #444;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* ===== EMPTY STATE ===== */
+.empty-luxe {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 8%;
+}
+
+.empty-card {
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 28px;
+  padding: 100px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.empty-card::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+}
+
+.empty-icon {
+  font-size: 80px;
+  margin-bottom: 28px;
+  opacity: 0.4;
+  position: relative;
+  z-index: 1;
+}
+
+.empty-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.empty-card p {
+  color: #555;
+  font-size: 16px;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-gold {
+  display: inline-flex;
+  background: #d4af37;
+  color: #0a0a0a;
+  padding: 16px 40px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-gold:hover {
+  background: #c4a030;
+  transform: translateY(-2px);
+}
+
+/* ===== ORDERS GRID ===== */
+.orders-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 8%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Order Card */
+.order-row {
+  background: #111;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.order-row:hover {
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Header */
+.order-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 32px 20px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.order-id-group {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.order-id-group .id-label {
+  font-size: 11px;
+  color: #444;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.order-id-group .id-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  color: #d4af37;
+  letter-spacing: 1px;
+}
+
+.order-id-group .date {
+  font-size: 13px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Status */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 1px solid;
+}
+
+.status-dot-sm {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.status-pill.pending {
+  background: rgba(234, 179, 8, 0.06);
+  border-color: rgba(234, 179, 8, 0.15);
+  color: #eab308;
+}
+.status-pill.pending .status-dot-sm { background: #eab308; }
+
+.status-pill.processing {
+  background: rgba(59, 130, 246, 0.06);
+  border-color: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+.status-pill.processing .status-dot-sm { background: #3b82f6; }
+
+.status-pill.shipped {
+  background: rgba(14, 165, 233, 0.06);
+  border-color: rgba(14, 165, 233, 0.15);
+  color: #0ea5e9;
+}
+.status-pill.shipped .status-dot-sm { background: #0ea5e9; }
+
+.status-pill.delivered {
+  background: rgba(34, 197, 94, 0.06);
+  border-color: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+.status-pill.delivered .status-dot-sm { background: #22c55e; }
+
+.status-pill.cancelled {
+  background: rgba(239, 68, 68, 0.06);
+  border-color: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+.status-pill.cancelled .status-dot-sm { background: #ef4444; }
+
+/* Items Preview */
+.order-items-preview {
+  padding: 0 32px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.item-avatars {
+  display: flex;
+  align-items: center;
+}
+
+.item-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 2px solid #111;
+  margin-left: -10px;
+  transition: transform 0.3s;
+}
+
+.item-avatar:first-child {
+  margin-left: 0;
+}
+
+.item-avatar:hover {
+  transform: scale(1.15);
+  z-index: 2;
+}
+
+.more-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(212, 175, 55, 0.08);
+  border: 2px solid #111;
+  margin-left: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: #d4af37;
+}
+
+.item-names {
+  font-size: 14px;
+  color: #777;
+  max-width: 300px;
+  line-height: 1.5;
+}
+
+/* Card Footer */
+.order-row-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.total-group {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.total-group .label {
+  font-size: 12px;
+  color: #444;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.total-group .amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #d4af37;
+}
+
+.btn-view-details {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #888;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.btn-view-details:hover {
+  border-color: #d4af37;
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.04);
+}
+
+.btn-view-details .arrow {
+  transition: transform 0.3s;
+}
+
+.btn-view-details:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .orders-hero {
+    padding: 60px 5% 30px;
+  }
+  .orders-grid,
+  .empty-luxe,
+  .error-luxe {
+    padding: 0 5%;
+  }
+  .order-row-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 24px 16px;
+  }
+  .order-items-preview {
+    padding: 0 24px 16px;
+  }
+  .order-row-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px 24px;
+  }
+  .item-names {
+    max-width: 100%;
+  }
+  .empty-card {
+    padding: 60px 24px;
+  }
+}

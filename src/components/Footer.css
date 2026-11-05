@@ -1,0 +1,328 @@
+/* ============================================
+   FOOTER LUXE — Premium Design + Dark/Light
+   ============================================ */
+.footer-luxe {
+  --bg: #070707;
+  --bg-elevated: #0e0e0e;
+  --text: #f5f5f5;
+  --text-secondary: #888;
+  --text-muted: #555;
+  --gold: #d4af37;
+  --gold-dim: rgba(212, 175, 55, 0.12);
+  --border: rgba(255, 255, 255, 0.05);
+  --input-bg: rgba(255, 255, 255, 0.04);
+
+  position: relative;
+  background: var(--bg);
+  color: var(--text);
+  padding: 0 0 30px;
+  overflow: hidden;
+  transition: background 0.5s ease, color 0.5s ease;
+}
+
+/* Light theme */
+.footer-luxe.theme-light {
+  --bg: #f5f5f3;
+  --bg-elevated: #ffffff;
+  --text: #1a1a1a;
+  --text-secondary: #555;
+  --text-muted: #999;
+  --gold: #b8941f;
+  --gold-dim: rgba(184, 148, 31, 0.1);
+  --border: rgba(0, 0, 0, 0.06);
+  --input-bg: rgba(0, 0, 0, 0.04);
+}
+
+/* ===== Accent top line ===== */
+.footer-accent-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.4;
+}
+
+/* ===== Wrapper ===== */
+.footer-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 8% 0;
+}
+
+/* ===== Main Grid ===== */
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.4fr;
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+/* ===== BRAND COLUMN ===== */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.2));
+}
+
+.brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: -0.5px;
+}
+
+.brand-desc {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--text-secondary);
+  max-width: 300px;
+}
+
+/* Social row */
+.social-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.social-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.social-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+.social-icon:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--bg);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px var(--gold-dim);
+}
+
+/* ===== LINK COLUMNS ===== */
+.footer-col {
+  padding-top: 8px;
+}
+
+.footer-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 28px;
+}
+
+.title-line {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--gold);
+  border-radius: 2px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-links li a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  position: relative;
+  padding-left: 0;
+  transition: all 0.3s ease;
+}
+
+.footer-links li a::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.footer-links li a:hover {
+  color: var(--gold);
+  padding-left: 20px;
+}
+
+.footer-links li a:hover::before {
+  width: 10px;
+}
+
+/* ===== NEWSLETTER ===== */
+.newsletter-col {
+  padding-top: 8px;
+}
+
+.newsletter-text {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+
+.newsletter-box {
+  display: flex;
+  gap: 10px;
+}
+
+.newsletter-box input {
+  flex: 1;
+  padding: 14px 18px;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.newsletter-box input::placeholder {
+  color: var(--text-muted);
+}
+
+.newsletter-box input:focus {
+  border-color: rgba(212, 175, 55, 0.3);
+}
+
+.newsletter-box button {
+  padding: 14px 28px;
+  background: var(--gold);
+  border: none;
+  border-radius: 12px;
+  color: var(--bg);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Inter', sans-serif;
+  white-space: nowrap;
+}
+
+.newsletter-box button:hover {
+  background: #c4a030;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--gold-dim);
+}
+
+/* ===== BOTTOM BAR ===== */
+.footer-bottom-bar {
+  border-top: 1px solid var(--border);
+  padding: 28px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.copyright {
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+
+.bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bottom-links a {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.bottom-links a:hover {
+  color: var(--gold);
+}
+
+.dot-sep {
+  color: var(--text-muted);
+  font-size: 10px;
+  opacity: 0.5;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 56px 40px;
+  }
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+  .brand-desc {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-wrapper {
+    padding: 60px 5% 0;
+  }
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+    margin-bottom: 60px;
+  }
+  .footer-bottom-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+  .newsletter-box {
+    flex-direction: column;
+  }
+  .newsletter-box button {
+    width: 100%;
+    padding: 14px;
+  }
+  .brand-name {
+    font-size: 28px;
+  }
+}

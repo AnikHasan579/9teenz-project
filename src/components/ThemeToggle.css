@@ -1,0 +1,43 @@
+.theme-toggle-floating {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-floating.dark {
+  background: rgba(10, 10, 10, 0.9);
+  color: #d4af37;
+}
+
+.theme-toggle-floating.light {
+  background: rgba(255, 255, 255, 0.95);
+  color: #b8941f;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle-floating:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2);
+}
+
+@media (max-width: 640px) {
+  .theme-toggle-floating {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    bottom: 16px;
+    right: 16px;
+  }
+}
