@@ -128,7 +128,7 @@ function Home() {
             alt="Our Store"
           />
           <div className="story-badge">
-            <span>5+</span>
+            <span>3+</span>
             <p>Years</p>
           </div>
         </div>
