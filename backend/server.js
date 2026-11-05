@@ -8,9 +8,13 @@ connectDB();
 
 const app = express();
 
-// ✅ ১. CORS ঠিক করা হলো (আপনার Vercel লিংকটি এখানে বসানো হলো)
+// ✅ CORS (শুধুমাত্র আপনার নতুন ডোমেইন এবং লোকাল ডেভেলপমেন্টের জন্য)
 app.use(cors({
-  origin: ['https://9teenz-project.vercel.app', 'http://localhost:5173'], 
+  origin: [
+    'https://9teenz.vercel.app',          // 👈 আপনার নতুন ডোমেইন
+    'http://localhost:5173',              // লোকাল ডেভেলপমেন্টের জন্য
+    'http://localhost:3000'
+  ],
   credentials: true
 }));
 
@@ -23,8 +27,6 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_KEY,
   api_secret: process.env.CLOUDINARY_SECRET,
 });
-
-// ❌ সিগনেচার রাউটটি ডিলিট করে দেওয়া হলো (এর আর দরকার নেই)
 
 // ===== ROUTES =====
 app.use('/api/auth', require('./routes/authRoutes'));
