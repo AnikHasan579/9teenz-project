@@ -32,9 +32,8 @@ function Login() {
       <div className="auth-glow"></div>
       <div className="auth-card">
         <div className="auth-brand">
-          <img src="/teen.png" alt="9teenz" className="auth-logo" />
           <h1>Admin Access</h1>
-          <p>Sign in to manage your dashboard</p>
+          <p>Sign in to manage your 9teenz dashboard</p>
         </div>
 
         {error && (
@@ -89,7 +88,6 @@ function Login() {
         </form>
 
         <div className="auth-footer">
-          <p>Need an account? <Link to="/register">Create Account</Link></p>
           <p className="auth-hint">Authorized personnel only</p>
         </div>
       </div>
