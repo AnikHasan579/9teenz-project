@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../context/UserAuthContext';
+import { useTheme } from '../components/ThemeContext';
 import './Register.css';
 
 function Register() {
@@ -10,6 +11,7 @@ function Register() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const { registerUser } = useUserAuth();
+  const { darkMode } = useTheme();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -25,7 +27,6 @@ function Register() {
       return;
     }
 
-    // 🔥 Frontend Validation
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{11,}$/;
     if (!passwordRegex.test(formData.password)) {
       setError('Password e minimum 11 character, 1 ta Capital letter, 1 ta Small letter, 1 ta Number ar 1 ta Special character (@$!%*?&#) thakte hobe!');
@@ -43,26 +44,101 @@ function Register() {
   };
 
   return (
-    <div className="register-page">
-      <div className="register-box">
-        <h2>✨ Create Account</h2>
-        <p>Register koro ar shopping shuru koro!</p>
+    <div className={`auth-luxe ${darkMode ? 'theme-dark' : 'theme-light'}`}>
+      <div className="auth-glow"></div>
+      <div className="auth-card">
+        <div className="auth-brand">
+          <img src="/teen.png" alt="9teenz" className="auth-logo" />
+          <h1>Create Account</h1>
+          <p>Join the 9teenz family today</p>
+        </div>
 
-        {error && <div className="error-msg">{error}</div>}
+        {error && (
+          <div className="auth-error">
+            <span>⚠</span>
+            <span>{error}</span>
+          </div>
+        )}
 
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
-          <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required />
-          <input type="password" name="password" placeholder="Password (Min 11 chars, A-Z, a-z, 0-9, @$!%*?&#)" value={formData.password} onChange={handleChange} required />
-          <input type="password" name="confirmPassword" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange} required />
-          <button type="submit" disabled={loading}>
-            {loading ? 'Creating...' : 'Register'}
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="auth-field">
+            <label>Full Name</label>
+            <div className="auth-input-wrap">
+              <span className="auth-input-icon">👤</span>
+              <input
+                type="text"
+                name="name"
+                placeholder="Your full name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="auth-field">
+            <label>Email Address</label>
+            <div className="auth-input-wrap">
+              <span className="auth-input-icon">📧</span>
+              <input
+                type="email"
+                name="email"
+                placeholder="you@gmail.com"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="auth-field">
+            <label>Password</label>
+            <div className="auth-input-wrap">
+              <span className="auth-input-icon">🔒</span>
+              <input
+                type="password"
+                name="password"
+                placeholder="Min 11 chars, A-Z, a-z, 0-9, @$!%*?&#"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <div className="auth-field">
+            <label>Confirm Password</label>
+            <div className="auth-input-wrap">
+              <span className="auth-input-icon">🔐</span>
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+            </div>
+          </div>
+
+          <button type="submit" className={`auth-btn ${loading ? 'loading' : ''}`} disabled={loading}>
+            <span className="auth-btn-glow"></span>
+            <span className="auth-btn-text">
+              {loading ? (
+                <>
+                  <span className="auth-spinner"></span>
+                  Creating Account...
+                </>
+              ) : (
+                'Create Account'
+              )}
+            </span>
           </button>
         </form>
 
-        <p className="link-text">
-          Already have an account? <Link to="/user-login">Login</Link>
-        </p>
+        <div className="auth-footer">
+          <p>Already have an account? <Link to="/user-login">Sign In</Link></p>
+        </div>
       </div>
     </div>
   );
