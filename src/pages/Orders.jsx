@@ -1,19 +1,19 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useUserAuth } from '../context/UserAuthContext';
+import { useTheme } from '../components/ThemeContext';
 import { getMyOrders } from '../services/orderService';
 import './Orders.css';
 
 function Orders() {
   const { userAuth } = useUserAuth();
+  const { darkMode } = useTheme();
   const navigate = useNavigate();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    console.log('Orders Page - UserAuth:', userAuth);
-
     if (!userAuth) {
       navigate('/user-login');
       return;
@@ -23,12 +23,9 @@ function Orders() {
 
   const loadOrders = async () => {
     try {
-      console.log('Loading orders...');
       const data = await getMyOrders();
-      console.log('Orders received:', data);
       setOrders(data);
     } catch (err) {
-      console.error('Load error:', err);
       setError(err.response?.data?.message || err.message);
     }
     setLoading(false);
@@ -37,13 +34,11 @@ function Orders() {
   if (!userAuth) return null;
 
   return (
-    <div className="orders-luxe">
+    <div className={`orders-luxe ${darkMode ? 'theme-dark' : 'theme-light'}`}>
+      <div className="orders-ambient"></div>
 
-      {/* Hero Header */}
       <section className="orders-hero">
-        <h1>
-          My <em>Orders</em>
-        </h1>
+        <h1>My <em>Orders</em></h1>
         <p>
           {orders.length > 0 ? (
             <>
@@ -56,25 +51,25 @@ function Orders() {
         </p>
       </section>
 
-      {/* Error */}
       {error && (
-        <div className="error-luxe">
+        <div className="orders-error">
           <div className="error-box">
-            <span className="icon">⚠️</span>
+            <span>⚠</span>
             <span>{error}</span>
           </div>
         </div>
       )}
 
-      {/* Loading */}
       {loading ? (
-        <div className="loading-luxe">
-          <div className="spinner-ring"></div>
+        <div className="orders-loading">
+          <div className="orders-spinner">
+            <div className="spinner-core"></div>
+            <div className="spinner-orbit"></div>
+          </div>
           <p>Loading Orders...</p>
         </div>
       ) : orders.length === 0 ? (
-        /* Empty State */
-        <div className="empty-luxe">
+        <div className="orders-empty">
           <div className="empty-card">
             <div className="empty-icon">📦</div>
             <h2>No Orders Yet</h2>
@@ -83,17 +78,14 @@ function Orders() {
           </div>
         </div>
       ) : (
-        /* Orders Grid */
         <div className="orders-grid">
           {orders.map((order) => (
-            <div key={order._id} className="order-row">
-
-              {/* Card Header */}
-              <div className="order-row-header">
-                <div className="order-id-group">
-                  <span className="id-label">Order</span>
-                  <span className="id-value">#{order._id?.slice(-8).toUpperCase()}</span>
-                  <span className="date">
+            <div key={order._id} className="order-card">
+              <div className="order-header">
+                <div className="order-meta">
+                  <span className="meta-label">Order</span>
+                  <span className="meta-id">#{order._id?.slice(-8).toUpperCase()}</span>
+                  <span className="meta-date">
                     📅 {new Date(order.createdAt).toLocaleDateString('en-GB', {
                       day: 'numeric',
                       month: 'short',
@@ -101,26 +93,25 @@ function Orders() {
                     })}
                   </span>
                 </div>
-                <span className={`status-pill ${order.status?.toLowerCase() || 'pending'}`}>
-                  <span className="status-dot-sm"></span>
+                <span className={`status-badge ${order.status?.toLowerCase() || 'pending'}`}>
+                  <span className="status-pip"></span>
                   {order.status}
                 </span>
               </div>
 
-              {/* Items Preview */}
-              <div className="order-items-preview">
-                <div className="item-avatars">
+              <div className="order-items-row">
+                <div className="item-stack">
                   {order.items?.slice(0, 4).map((item, i) => (
                     <img
                       key={i}
                       src={item.image}
                       alt={item.name}
-                      className="item-avatar"
+                      className="stack-img"
                       loading="lazy"
                     />
                   ))}
                   {order.items?.length > 4 && (
-                    <div className="more-badge">+{order.items.length - 4}</div>
+                    <div className="stack-more">+{order.items.length - 4}</div>
                   )}
                 </div>
                 <span className="item-names">
@@ -129,13 +120,12 @@ function Orders() {
                 </span>
               </div>
 
-              {/* Card Footer */}
-              <div className="order-row-footer">
-                <div className="total-group">
-                  <span className="label">Total</span>
-                  <span className="amount">৳ {order.totalPrice}</span>
+              <div className="order-footer">
+                <div className="order-total">
+                  <span className="total-label">Total</span>
+                  <span className="total-amount">৳ {order.totalPrice}</span>
                 </div>
-                <Link to={`/orders/${order._id}`} className="btn-view-details">
+                <Link to={`/orders/${order._id}`} className="btn-details">
                   View Details <span className="arrow">→</span>
                 </Link>
               </div>
