@@ -2,10 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import { UserAuthProvider } from './context/UserAuthContext';
-import { ThemeProvider } from './components/ThemeContext';  // 🌓 Global Theme
+import { ThemeProvider } from './components/ThemeContext';  // Global Theme
+import ScrollToTop from './components/ScrollToTop';       // Scroll to top on route change
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import ThemeToggle from './components/ThemeToggle';  // 🌓 Floating Toggle Button
+import ThemeToggle from './components/ThemeToggle';         // Floating Toggle Button
 import ProtectedRoute from './components/ProtectedRoute';
 import Home from './pages/Home';
 import Products from './pages/Products';
@@ -31,11 +32,14 @@ import './App.css';
 
 function App() {
   return (
-    <ThemeProvider>  {/* 🌓 Wrap everything with Theme */}
+    <ThemeProvider>
       <UserAuthProvider>
         <AuthProvider>
           <CartProvider>
             <BrowserRouter>
+              {/* Scroll to top on every route change */}
+              <ScrollToTop />
+
               <div className="app-wrapper">
                 <Navbar />
 
@@ -76,7 +80,7 @@ function App() {
 
                 <Footer />
 
-                {/* 🌓 Floating Theme Toggle — visible on ALL pages */}
+                {/* Floating Theme Toggle — visible on ALL pages */}
                 <ThemeToggle />
               </div>
             </BrowserRouter>
