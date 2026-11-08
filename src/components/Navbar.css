@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 /* ============================================
-   NAVBAR LUXE — Premium + Dark/Light Theme
+   NAVBAR LUXE v2 — Premium + Dark/Light + Perfect Logo
    ============================================ */
 .navbar-luxe {
   --nav-bg: transparent;
-  --nav-bg-scroll: rgba(10, 10, 10, 0.82);
+  --nav-bg-scroll: rgba(10, 10, 10, 0.88);
   --nav-border: rgba(212, 175, 55, 0.06);
   --nav-text: rgba(255, 255, 255, 0.7);
   --nav-text-active: #d4af37;
@@ -25,8 +25,8 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  height: 84px;
-  padding: 0 6%;
+  height: 80px;
+  padding: 0 5%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,7 +38,7 @@
 /* ===== LIGHT THEME ===== */
 .navbar-luxe.theme-light {
   --nav-bg: transparent;
-  --nav-bg-scroll: rgba(248, 248, 246, 0.88);
+  --nav-bg-scroll: rgba(248, 248, 246, 0.92);
   --nav-border: rgba(0, 0, 0, 0.06);
   --nav-text: rgba(0, 0, 0, 0.6);
   --nav-text-active: #b8941f;
@@ -59,53 +59,96 @@
   backdrop-filter: var(--nav-glass);
   -webkit-backdrop-filter: var(--nav-glass);
   border-bottom: 1px solid var(--nav-border);
-  height: 70px;
+  height: 68px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08);
 }
 
-/* ===== LOGO ===== */
+/* ============================================
+   LOGO — Perfect on ALL devices
+   ============================================ */
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   text-decoration: none;
   position: relative;
   z-index: 2;
+  flex-shrink: 0;
 }
 
+/* Logo ring glow */
+.logo-ring {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.02));
+  border: 1px solid rgba(212, 175, 55, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.logo-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.08), transparent 70%);
+}
+
+.nav-logo:hover .logo-ring {
+  border-color: rgba(212, 175, 55, 0.25);
+  box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+  transform: scale(1.05);
+}
+
+/* Logo image — responsive & crisp */
 .nav-logo-img {
-  height: 150px;
-  width: auto;
+  width: 40px;
+  height: 40px;
   object-fit: contain;
-  filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.15));
-  transition: transform 0.4s ease;
+  object-position: center;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-logo:hover .nav-logo-img {
-  transform: scale(1.08) rotate(-2deg);
+  transform: scale(1.1) rotate(-3deg);
 }
 
+/* Logo text */
 .nav-logo-text {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
   font-weight: 600;
   color: var(--nav-gold);
-  letter-spacing: -0.3px;
+  letter-spacing: -0.5px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.nav-logo:hover .nav-logo-text {
+  color: var(--nav-gold-hover);
 }
 
 /* ===== NAV LINKS ===== */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
   list-style: none;
 }
 
-.nav-links li a {
+.nav-links > li > a {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 18px;
+  padding: 10px 16px;
   color: var(--nav-text);
   text-decoration: none;
   font-size: 14px;
@@ -116,30 +159,31 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.nav-links li a .nav-emoji {
-  font-size: 15px;
-  opacity: 0.75;
+.nav-links > li > a .nav-icon {
+  font-size: 16px;
+  opacity: 0.7;
   transition: all 0.3s ease;
+  line-height: 1;
 }
 
-.nav-links li a:hover {
+.nav-links > li > a:hover {
   color: var(--nav-gold);
   background: rgba(212, 175, 55, 0.04);
 }
 
-.nav-links li a:hover .nav-emoji {
+.nav-links > li > a:hover .nav-icon {
   opacity: 1;
   transform: translateY(-2px);
 }
 
-.nav-links li a.active {
+.nav-links > li > a.active {
   color: var(--nav-gold);
   background: rgba(212, 175, 55, 0.06);
   font-weight: 600;
 }
 
 /* Underline glow */
-.nav-links li a::after {
+.nav-links > li > a::after {
   content: '';
   position: absolute;
   bottom: 4px;
@@ -152,8 +196,8 @@
   transition: width 0.35s ease;
 }
 
-.nav-links li a:hover::after,
-.nav-links li a.active::after {
+.nav-links > li > a:hover::after,
+.nav-links > li > a.active::after {
   width: 20px;
 }
 
@@ -164,7 +208,7 @@
 
 .nav-badge {
   position: absolute;
-  top: 2px;
+  top: 0;
   right: 2px;
   min-width: 18px;
   height: 18px;
@@ -191,7 +235,8 @@
   width: 1px;
   height: 22px;
   background: var(--nav-divider);
-  margin: 0 8px;
+  margin: 0 10px;
+  flex-shrink: 0;
 }
 
 /* ===== USER PILL ===== */
@@ -207,6 +252,12 @@
   background: rgba(212, 175, 55, 0.04);
   border: 1px solid rgba(212, 175, 55, 0.08);
   border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.nav-user:hover {
+  border-color: rgba(212, 175, 55, 0.15);
+  background: rgba(212, 175, 55, 0.06);
 }
 
 .nav-avatar {
@@ -221,6 +272,7 @@
   font-weight: 800;
   color: #fff;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.15);
 }
 
 .nav-username {
@@ -235,16 +287,23 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 11px 26px;
+  gap: 6px;
+  padding: 11px 24px;
   border-radius: 14px;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.3px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   font-family: 'Inter', sans-serif;
   text-decoration: none;
   border: none;
+  white-space: nowrap;
+}
+
+.nav-btn .nav-icon {
+  font-size: 14px;
+  line-height: 1;
 }
 
 .nav-btn-primary {
@@ -273,8 +332,9 @@
 
 .nav-btn-logout {
   background: transparent;
-  border: 1px solid rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.1);
   color: #ef4444;
+  font-size: 13px;
 }
 
 .nav-btn-logout:hover {
@@ -292,6 +352,7 @@
   cursor: pointer;
   padding: 10px;
   z-index: 1002;
+  position: relative;
 }
 
 .hamburger span {
@@ -331,7 +392,9 @@
   pointer-events: all;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ============================================
+   RESPONSIVE — Tablet & Mobile
+   ============================================ */
 @media (max-width: 1024px) {
   .hamburger {
     display: flex;
@@ -346,31 +409,33 @@
     height: 100vh;
     background: var(--nav-mobile-bg);
     backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     border-left: 1px solid var(--nav-border);
     flex-direction: column;
     align-items: flex-start;
-    padding: 100px 28px 40px;
+    padding: 90px 24px 40px;
     gap: 4px;
     transition: right 0.45s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 999;
     overflow-y: auto;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
   }
 
   .nav-links.open {
     right: 0;
   }
 
-  .nav-links li {
+  .nav-links > li {
     width: 100%;
   }
 
-  .nav-links li a {
+  .nav-links > li > a {
     width: 100%;
     padding: 14px 18px;
     font-size: 15px;
   }
 
-  .nav-links li a::after {
+  .nav-links > li > a::after {
     display: none;
   }
 
@@ -396,21 +461,62 @@
   }
 }
 
+/* ============================================
+   MOBILE — Small screens
+   ============================================ */
 @media (max-width: 640px) {
   .navbar-luxe {
-    height: 68px;
+    height: 64px;
     padding: 0 4%;
   }
 
   .navbar-luxe.scrolled {
-    height: 60px;
+    height: 58px;
+  }
+
+  /* Logo smaller on mobile */
+  .logo-ring {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
   }
 
   .nav-logo-img {
-    height: 36px;
+    width: 32px;
+    height: 32px;
   }
 
   .nav-logo-text {
     font-size: 22px;
+  }
+
+  .nav-links {
+    width: 300px;
+    padding: 80px 20px 36px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+  .nav-logo-text {
+    font-size: 20px;
+  }
+
+  .logo-ring {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+  }
+
+  .nav-logo-img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1440px) {
+  .navbar-luxe {
+    padding: 0 8%;
   }
 }

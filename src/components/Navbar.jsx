@@ -35,26 +35,31 @@ function Navbar() {
   return (
     <>
       <nav className={`navbar-luxe ${scrolled ? 'scrolled' : ''} ${darkMode ? 'theme-dark' : 'theme-light'}`}>
+        {/* Logo */}
         <Link to="/" className="nav-logo">
-          <img src="/teen.png" alt="9teenz" className="nav-logo-img" />
+          <div className="logo-ring">
+            <img src="/teen.png" alt="9teenz" className="nav-logo-img" />
+          </div>
+          <span className="nav-logo-text">9teenz</span>
         </Link>
 
+        {/* Desktop + Mobile Nav */}
         <ul className={`nav-links ${mobileOpen ? 'open' : ''}`}>
           <li>
             <Link to="/" className={isActive('/') ? 'active' : ''}>
-              <span className="nav-emoji">🏠</span>
+              <span className="nav-icon">🏠</span>
               <span className="nav-label">Home</span>
             </Link>
           </li>
           <li>
             <Link to="/products" className={isActive('/products') ? 'active' : ''}>
-              <span className="nav-emoji">🛍️</span>
+              <span className="nav-icon">🛍️</span>
               <span className="nav-label">Shop</span>
             </Link>
           </li>
           <li className="cart-li">
             <Link to="/cart" className={isActive('/cart') ? 'active' : ''}>
-              <span className="nav-emoji">🛒</span>
+              <span className="nav-icon">🛒</span>
               <span className="nav-label">Cart</span>
               {totalItems > 0 && <span className="nav-badge">{totalItems}</span>}
             </Link>
@@ -63,7 +68,7 @@ function Navbar() {
           {(user || userAuth) && (
             <li>
               <Link to="/tryon" className={isActive('/tryon') ? 'active' : ''}>
-                <span className="nav-emoji">🥽</span>
+                <span className="nav-icon">🥽</span>
                 <span className="nav-label">Try-On</span>
               </Link>
             </li>
@@ -75,25 +80,27 @@ function Navbar() {
             <>
               <li>
                 <Link to="/admin" className={isActive('/admin') ? 'active' : ''}>
-                  <span className="nav-emoji">⚙️</span>
+                  <span className="nav-icon">⚙️</span>
                   <span className="nav-label">Admin</span>
                 </Link>
               </li>
               <li>
                 <Link to="/admin/orders" className={isActive('/admin/orders') ? 'active' : ''}>
-                  <span className="nav-emoji">📋</span>
+                  <span className="nav-icon">📋</span>
                   <span className="nav-label">Orders</span>
                 </Link>
               </li>
               <li>
-                <button onClick={logout} className="nav-btn nav-btn-logout">Logout</button>
+                <button onClick={logout} className="nav-btn nav-btn-logout">
+                  <span className="nav-icon">↪</span> Logout
+                </button>
               </li>
             </>
           ) : userAuth ? (
             <>
               <li>
                 <Link to="/orders" className={isActive('/orders') ? 'active' : ''}>
-                  <span className="nav-emoji">📦</span>
+                  <span className="nav-icon">📦</span>
                   <span className="nav-label">Orders</span>
                 </Link>
               </li>
@@ -104,14 +111,16 @@ function Navbar() {
                 </div>
               </li>
               <li>
-                <button onClick={logoutUser} className="nav-btn nav-btn-logout">Logout</button>
+                <button onClick={logoutUser} className="nav-btn nav-btn-logout">
+                  <span className="nav-icon">↪</span> Logout
+                </button>
               </li>
             </>
           ) : (
             <>
               <li>
                 <Link to="/login" className={isActive('/login') ? 'active' : ''}>
-                  <span className="nav-emoji">🔐</span>
+                  <span className="nav-icon">🔐</span>
                   <span className="nav-label">Admin</span>
                 </Link>
               </li>
@@ -125,6 +134,7 @@ function Navbar() {
           )}
         </ul>
 
+        {/* Mobile Hamburger */}
         <button
           className={`hamburger ${mobileOpen ? 'active' : ''}`}
           onClick={() => setMobileOpen(!mobileOpen)}
