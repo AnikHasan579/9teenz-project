@@ -1,38 +1,84 @@
-/* ===== GLOBAL APP STYLES ===== */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Smooth theme transition for ALL elements */
+/* ============================================
+   9TEENZ — GLOBAL APP STYLES
+   ============================================ */
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base reset + theme transition (only on key properties) */
 *,
 *::before,
 *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Theme transition — applied to specific properties only */
+body,
+body * {
   transition: background-color 0.4s ease,
               color 0.4s ease,
               border-color 0.4s ease,
               box-shadow 0.4s ease;
 }
 
-/* App wrapper */
+/* Exclude these from transition for performance */
+img,
+svg,
+video,
+canvas,
+iframe {
+  transition: none !important;
+}
+
+/* ===== APP WRAPPER ===== */
 .app-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: var(--app-bg, #0a0a0a);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Main content area */
+/* ===== MAIN CONTENT ===== */
 .main-content {
   flex: 1;
+  position: relative;
 }
 
-/* ===== GLOBAL CSS VARIABLES (fallback) ===== */
+/* ===== CSS VARIABLES ===== */
 :root {
   --app-bg: #0a0a0a;
   --app-text: #f5f5f5;
+  --app-card: #0c0c0c;
+  --app-border: rgba(255,255,255,0.05);
+  --app-muted: #444;
+  --gold: #d4af37;
+  --gold-bright: #e8c96c;
+  --gold-dim: rgba(212,175,55,0.05);
+  --gold-glow: rgba(212,175,55,0.12);
+  --error: #ef4444;
+  --success: #22c55e;
 }
 
-/* Light theme on body */
+/* Light theme */
 body.theme-light {
   --app-bg: #f8f8f6;
   --app-text: #1a1a1a;
+  --app-card: #ffffff;
+  --app-border: rgba(0,0,0,0.06);
+  --app-muted: #999;
+  --gold: #b8941f;
+  --gold-bright: #c9a020;
+  --gold-dim: rgba(184,148,31,0.05);
+  --gold-glow: rgba(184,148,31,0.1);
 }
 
 body {
@@ -41,7 +87,7 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* ===== SCROLLBAR STYLING ===== */
+/* ===== SCROLLBAR ===== */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -59,9 +105,131 @@ body {
   background: rgba(212, 175, 55, 0.35);
 }
 
-/* ===== SELECTION COLOR ===== */
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 175, 55, 0.2) var(--app-bg);
+}
+
+/* ===== SELECTION ===== */
 ::selection {
   background: rgba(212, 175, 55, 0.3);
   color: inherit;
 }
 
+/* ===== GLOBAL ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.2); }
+  50% { box-shadow: 0 0 20px 4px rgba(212,175,55,0.08); }
+}
+
+/* ===== UTILITY CLASSES ===== */
+.text-gold {
+  color: var(--gold);
+}
+
+.bg-gold-dim {
+  background: var(--gold-dim);
+}
+
+.border-gold {
+  border-color: rgba(212,175,55,0.12);
+}
+
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--app-border);
+}
+
+.theme-light .glass {
+  background: rgba(255,255,255,0.6);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, var(--gold), var(--gold-bright));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Gold glow effect */
+.gold-glow {
+  box-shadow: 0 0 40px var(--gold-glow);
+}
+
+/* Shimmer loading effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--app-card) 25%,
+    rgba(212,175,55,0.03) 50%,
+    var(--app-card) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ===== RESPONSIVE FONT SCALE ===== */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* ===== FOCUS STYLES ===== */
+*:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* ===== LINK RESET ===== */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ===== BUTTON RESET ===== */
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ===== IMAGE RESET ===== */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
