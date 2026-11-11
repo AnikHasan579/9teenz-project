@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useTheme } from '../components/ThemeContext';
+import { useTheme } from '../components/ThemeContext';  // 🌓 Global Theme
 import { getProducts } from '../services/productService';
 import './Home.css';
 
@@ -8,6 +8,8 @@ function Home() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState('');
+
+  // 🌓 Global Theme — local state নয়, Context থেকে
   const { darkMode } = useTheme();
 
   useEffect(() => {
@@ -26,51 +28,42 @@ function Home() {
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    alert('Welcome to the symbiote circle!');
+    alert('Welcome to the inner circle! 🥂');
     setEmail('');
   };
 
   const marqueeText = Array(10).fill('Free Shipping Over ৳3000 · New Drops Every Friday · Premium Quality Guaranteed · ');
 
   return (
-    <div className={`venom-home ${darkMode ? 'theme-dark' : 'theme-light'}`}>
-
-      {/* Symbiote Background Effects */}
-      <div className="symbiote-bg">
-        <div className="gooey-blob blob-1"></div>
-        <div className="gooey-blob blob-2"></div>
-        <div className="gooey-blob blob-3"></div>
-        <div className="venom-veins"></div>
-      </div>
+    <div className={`luxe-home ${darkMode ? 'theme-dark' : 'theme-light'}`}>
 
       {/* ===== HERO ===== */}
-      <section className="venom-hero">
+      <section className="hero-luxe">
         <div className="hero-text-side">
-          <span className="hero-eyebrow">Symbiote Collection 2025</span>
-          <h1 className="glitch-text" data-text="WEAR THE DARKNESS">
+          <span className="hero-eyebrow">Curated Collection 2025</span>
+          <h1>
             Wear the <br />
-            <em>Darkness</em>
+            <em>Extraordinary</em>
           </h1>
           <p className="hero-desc">
-            Unleash your inner edge. Handpicked pieces that merge street culture
-            with symbiote aesthetics. Bold, unapologetic, and impossible to ignore.
+            Handpicked pieces that blend timeless elegance with modern edge.
+            Each item tells a story — make it yours.
           </p>
           <div className="hero-cta-group">
-            <Link to="/products" className="btn-venom">Explore Collection</Link>
-            <Link to="/tryon" className="btn-venom-ghost">
+            <Link to="/products" className="btn-gold">Explore Collection</Link>
+            <Link to="/tryon" className="btn-ghost">
               Virtual Try-On <span>→</span>
             </Link>
           </div>
         </div>
         <div className="hero-visual-side">
           <div className="hero-image-frame">
-            <div className="venom-frame-glow"></div>
             <img
               src="https://i.pinimg.com/736x/8f/51/9a/8f519a5e06f0489a172fc5e8a6bbe02b.jpg"
-              alt="Venom Fashion"
+              alt="Luxury Fashion"
             />
           </div>
-          <div className="floating-card venom-card">
+          <div className="floating-card">
             <p>This Week Only</p>
             <h4>৳2,499</h4>
           </div>
@@ -82,7 +75,7 @@ function Home() {
       </section>
 
       {/* ===== MARQUEE ===== */}
-      <div className="venom-marquee">
+      <div className="marquee-strip">
         <div className="marquee-content">
           {marqueeText.map((text, i) => (
             <span key={i}>{text}</span>
@@ -91,7 +84,7 @@ function Home() {
       </div>
 
       {/* ===== FEATURED PRODUCTS (BENTO GRID) ===== */}
-      <section className="venom-featured">
+      <section className="featured-luxe">
         <div className="section-top">
           <h2>
             Featured <br />
@@ -103,10 +96,7 @@ function Home() {
         </div>
 
         {loading ? (
-          <div className="venom-loading">
-            <div className="venom-spinner"></div>
-            <p>Loading Collection...</p>
-          </div>
+          <p className="loading-luxe">Loading Collection...</p>
         ) : (
           <div className="bento-grid">
             {products.map((product, index) => {
@@ -123,7 +113,6 @@ function Home() {
                     <h3>{product.name}</h3>
                     <p>৳ {product.price}</p>
                   </div>
-                  <div className="venom-tentacle"></div>
                 </Link>
               );
             })}
@@ -132,7 +121,7 @@ function Home() {
       </section>
 
       {/* ===== STORY SECTION ===== */}
-      <section className="venom-story">
+      <section className="story-section">
         <div className="story-image">
           <img
             src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&auto=format&fit=crop&q=80"
@@ -157,14 +146,14 @@ function Home() {
             Every product in our collection is hand-selected for quality,
             sustainability, and that unmistakable edge that turns heads.
           </p>
-          <Link to="/about" className="btn-venom" style={{ display: 'inline-block', marginTop: '10px' }}>
+          <Link to="/about" className="btn-gold" style={{ display: 'inline-block', marginTop: '10px' }}>
             Our Story
           </Link>
         </div>
       </section>
 
       {/* ===== STATS BAR ===== */}
-      <div className="venom-stats">
+      <div className="stats-bar">
         <div className="stat-item">
           <h3>12K+</h3>
           <p>Happy Customers</p>
@@ -184,9 +173,9 @@ function Home() {
       </div>
 
       {/* ===== NEWSLETTER ===== */}
-      <section className="venom-newsletter">
-        <h2>Join the Symbiote Circle</h2>
-        <p>Be the first to know about exclusive drops, secret sales, and dark style tips.</p>
+      <section className="newsletter-luxe">
+        <h2>Join the Inner Circle</h2>
+        <p>Be the first to know about exclusive drops, secret sales, and style tips.</p>
         <form className="newsletter-form" onSubmit={handleSubscribe}>
           <input
             type="email"
